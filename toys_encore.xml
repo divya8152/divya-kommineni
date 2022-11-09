@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.1
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Nov 09, 2022 at 09:18 PM
+- Server version: 10.4.22-MariaDB
+- PHP Version: 7.4.27
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="toys_encore" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="inventory">
+                CREATE TABLE `inventory` (
+                  `inventoryId` int(11) NOT NULL AUTO_INCREMENT,
+                  `toyCatId` int(11) NOT NULL,
+                  `itemName` varchar(255) NOT NULL,
+                  `itemPrice` float NOT NULL,
+                  `offerPrice` float NOT NULL,
+                  `active` tinyint(4) NOT NULL,
+                  PRIMARY KEY (`inventoryId`),
+                  KEY `fk_toyCat_id` (`toyCatId`),
+                  CONSTRAINT `fk_toyCat_id` FOREIGN KEY (`toyCatId`) REFERENCES `toycat` (`toyCatId`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="invoice">
+                CREATE TABLE `invoice` (
+                  `invoiceId` int(11) NOT NULL AUTO_INCREMENT,
+                  `invoiceNo` varchar(15) NOT NULL,
+                  `vendorId` int(11) NOT NULL,
+                  `invoiceAmount` float NOT NULL,
+                  `discount` float NOT NULL,
+                  `tax` float NOT NULL,
+                  `totalAmount` float NOT NULL,
+                  `flag` tinyint(4) NOT NULL,
+                  PRIMARY KEY (`invoiceId`),
+                  KEY `fk_vendor_id` (`vendorId`),
+                  CONSTRAINT `fk_vendor_id` FOREIGN KEY (`vendorId`) REFERENCES `vendor` (`vendorId`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="invoiceitem">
+                CREATE TABLE `invoiceitem` (
+                  `invoiceItemId` int(11) NOT NULL AUTO_INCREMENT,
+                  `invoiceId` int(11) NOT NULL,
+                  `inventoryId` int(11) NOT NULL,
+                  `price` float NOT NULL,
+                  `qty` int(11) NOT NULL,
+                  `discount` float NOT NULL,
+                  `type` varchar(5) NOT NULL,
+                  `status` tinyint(4) NOT NULL DEFAULT 1,
+                  PRIMARY KEY (`invoiceItemId`),
+                  KEY `fk_invoice_id` (`invoiceId`),
+                  KEY `fk_inventory_id` (`inventoryId`),
+                  CONSTRAINT `fk_inventory_id` FOREIGN KEY (`inventoryId`) REFERENCES `inventory` (`inventoryId`),
+                  CONSTRAINT `fk_invoice_id` FOREIGN KEY (`invoiceId`) REFERENCES `invoice` (`invoiceId`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="toycat">
+                CREATE TABLE `toycat` (
+                  `toyCatId` int(11) NOT NULL AUTO_INCREMENT,
+                  `toyCatName` varchar(255) NOT NULL,
+                  `status` tinyint(4) NOT NULL DEFAULT 1,
+                  PRIMARY KEY (`toyCatId`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="vendor">
+                CREATE TABLE `vendor` (
+                  `vendorId` int(11) NOT NULL AUTO_INCREMENT,
+                  `vendorName` varchar(255) NOT NULL,
+                  `location` varchar(500) NOT NULL,
+                  `city` varchar(255) NOT NULL,
+                  `postalCode` varchar(25) NOT NULL,
+                  `contactNo` varchar(25) NOT NULL,
+                  `email` varchar(255) NOT NULL,
+                  `active` tinyint(4) NOT NULL DEFAULT 1,
+                  PRIMARY KEY (`vendorId`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'toys_encore'
+    -->
+    <database name="toys_encore">
+        <!-- Table inventory -->
+        <table name="inventory">
+            <column name="inventoryId">1</column>
+            <column name="toyCatId">1</column>
+            <column name="itemName">DITTY BIRD Baby Sound Book</column>
+            <column name="itemPrice">2500</column>
+            <column name="offerPrice">0</column>
+            <column name="active">1</column>
+        </table>
+        <table name="inventory">
+            <column name="inventoryId">2</column>
+            <column name="toyCatId">2</column>
+            <column name="itemName">Webby Soft Animal Plush Elephant Toy</column>
+            <column name="itemPrice">1500</column>
+            <column name="offerPrice">0</column>
+            <column name="active">1</column>
+        </table>
+        <table name="inventory">
+            <column name="inventoryId">3</column>
+            <column name="toyCatId">4</column>
+            <column name="itemName">Carroms</column>
+            <column name="itemPrice">5000</column>
+            <column name="offerPrice">0</column>
+            <column name="active">1</column>
+        </table>
+        <table name="inventory">
+            <column name="inventoryId">4</column>
+            <column name="toyCatId">3</column>
+            <column name="itemName">Tennis Racket</column>
+            <column name="itemPrice">8000</column>
+            <column name="offerPrice">500</column>
+            <column name="active">1</column>
+        </table>
+        <!-- Table invoice -->
+        <table name="invoice">
+            <column name="invoiceId">1</column>
+            <column name="invoiceNo">INV00001</column>
+            <column name="vendorId">1</column>
+            <column name="invoiceAmount">8000</column>
+            <column name="discount">500</column>
+            <column name="tax">0</column>
+            <column name="totalAmount">7500</column>
+            <column name="flag">1</column>
+        </table>
+        <table name="invoice">
+            <column name="invoiceId">2</column>
+            <column name="invoiceNo">INV00002</column>
+            <column name="vendorId">2</column>
+            <column name="invoiceAmount">9500</column>
+            <column name="discount">0</column>
+            <column name="tax">18</column>
+            <column name="totalAmount">11210</column>
+            <column name="flag">1</column>
+        </table>
+        <!-- Table invoiceitem -->
+        <table name="invoiceitem">
+            <column name="invoiceItemId">7</column>
+            <column name="invoiceId">1</column>
+            <column name="inventoryId">4</column>
+            <column name="price">8000</column>
+            <column name="qty">1</column>
+            <column name="discount">500</column>
+            <column name="type"></column>
+            <column name="status">1</column>
+        </table>
+        <table name="invoiceitem">
+            <column name="invoiceItemId">8</column>
+            <column name="invoiceId">2</column>
+            <column name="inventoryId">3</column>
+            <column name="price">5000</column>
+            <column name="qty">1</column>
+            <column name="discount">0</column>
+            <column name="type"></column>
+            <column name="status">1</column>
+        </table>
+        <table name="invoiceitem">
+            <column name="invoiceItemId">9</column>
+            <column name="invoiceId">2</column>
+            <column name="inventoryId">1</column>
+            <column name="price">2500</column>
+            <column name="qty">1</column>
+            <column name="discount">0</column>
+            <column name="type"></column>
+            <column name="status">1</column>
+        </table>
+        <table name="invoiceitem">
+            <column name="invoiceItemId">10</column>
+            <column name="invoiceId">2</column>
+            <column name="inventoryId">2</column>
+            <column name="price">1500</column>
+            <column name="qty">1</column>
+            <column name="discount">0</column>
+            <column name="type"></column>
+            <column name="status">1</column>
+        </table>
+        <!-- Table toycat -->
+        <table name="toycat">
+            <column name="toyCatId">1</column>
+            <column name="toyCatName">Age1-2</column>
+            <column name="status">1</column>
+        </table>
+        <table name="toycat">
+            <column name="toyCatId">2</column>
+            <column name="toyCatName">Age2-4</column>
+            <column name="status">1</column>
+        </table>
+        <table name="toycat">
+            <column name="toyCatId">3</column>
+            <column name="toyCatName">Outdoor</column>
+            <column name="status">1</column>
+        </table>
+        <table name="toycat">
+            <column name="toyCatId">4</column>
+            <column name="toyCatName">Indoor</column>
+            <column name="status">1</column>
+        </table>
+        <!-- Table vendor -->
+        <table name="vendor">
+            <column name="vendorId">1</column>
+            <column name="vendorName">John</column>
+            <column name="location">Los Angels</column>
+            <column name="city">LA</column>
+            <column name="postalCode">304-123</column>
+            <column name="contactNo">9098729382</column>
+            <column name="email">john@la.com</column>
+            <column name="active">1</column>
+        </table>
+        <table name="vendor">
+            <column name="vendorId">2</column>
+            <column name="vendorName">World Toy Dealers</column>
+            <column name="location">Spring Field</column>
+            <column name="city">New Jersey</column>
+            <column name="postalCode">503467</column>
+            <column name="contactNo">982932938</column>
+            <column name="email">business@worldtoy.com</column>
+            <column name="active">1</column>
+        </table>
+    </database>
+</pma_xml_export>
