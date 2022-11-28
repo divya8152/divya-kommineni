@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.1
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Nov 27, 2022 at 02:14 PM
+- Server version: 10.4.22-MariaDB
+- PHP Version: 7.4.27
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="toys_encore" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="vendor">
+                CREATE TABLE `vendor` (
+                  `vendorId` int(11) NOT NULL AUTO_INCREMENT,
+                  `vendorName` varchar(255) NOT NULL,
+                  `location` varchar(500) NOT NULL,
+                  `city` varchar(255) NOT NULL,
+                  `postalCode` varchar(25) NOT NULL,
+                  `contactNo` varchar(25) NOT NULL,
+                  `email` varchar(255) NOT NULL,
+                  `active` tinyint(4) NOT NULL DEFAULT 1,
+                  PRIMARY KEY (`vendorId`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'toys_encore'
+    -->
+    <database name="toys_encore">
+        <!-- Table vendor -->
+        <table name="vendor">
+            <column name="vendorId">1</column>
+            <column name="vendorName">John</column>
+            <column name="location">Los Angels</column>
+            <column name="city">LA</column>
+            <column name="postalCode">304-123</column>
+            <column name="contactNo">9098729382</column>
+            <column name="email">john@la.com</column>
+            <column name="active">1</column>
+        </table>
+        <table name="vendor">
+            <column name="vendorId">2</column>
+            <column name="vendorName">World Toy Dealers</column>
+            <column name="location">Spring Field</column>
+            <column name="city">New Jersey</column>
+            <column name="postalCode">503467</column>
+            <column name="contactNo">982932938</column>
+            <column name="email">business@worldtoy.com</column>
+            <column name="active">1</column>
+        </table>
+    </database>
+</pma_xml_export>

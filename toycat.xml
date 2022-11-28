@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.1
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Nov 27, 2022 at 02:13 PM
+- Server version: 10.4.22-MariaDB
+- PHP Version: 7.4.27
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="toys_encore" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="toycat">
+                CREATE TABLE `toycat` (
+                  `toyCatId` int(11) NOT NULL AUTO_INCREMENT,
+                  `toyCatName` varchar(255) NOT NULL,
+                  `status` tinyint(4) NOT NULL DEFAULT 1,
+                  PRIMARY KEY (`toyCatId`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'toys_encore'
+    -->
+    <database name="toys_encore">
+        <!-- Table toycat -->
+        <table name="toycat">
+            <column name="toyCatId">1</column>
+            <column name="toyCatName">Age1-2</column>
+            <column name="status">1</column>
+        </table>
+        <table name="toycat">
+            <column name="toyCatId">2</column>
+            <column name="toyCatName">Age2-4</column>
+            <column name="status">1</column>
+        </table>
+        <table name="toycat">
+            <column name="toyCatId">3</column>
+            <column name="toyCatName">Outdoor</column>
+            <column name="status">1</column>
+        </table>
+        <table name="toycat">
+            <column name="toyCatId">4</column>
+            <column name="toyCatName">Indoor</column>
+            <column name="status">1</column>
+        </table>
+    </database>
+</pma_xml_export>

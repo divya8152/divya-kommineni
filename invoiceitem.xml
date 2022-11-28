@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.1
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Nov 27, 2022 at 02:12 PM
+- Server version: 10.4.22-MariaDB
+- PHP Version: 7.4.27
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="toys_encore" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="invoiceitem">
+                CREATE TABLE `invoiceitem` (
+                  `invoiceItemId` int(11) NOT NULL AUTO_INCREMENT,
+                  `invoiceId` int(11) NOT NULL,
+                  `inventoryId` int(11) NOT NULL,
+                  `price` float NOT NULL,
+                  `qty` int(11) NOT NULL,
+                  `discount` float NOT NULL,
+                  `type` varchar(5) NOT NULL,
+                  `status` tinyint(4) NOT NULL DEFAULT 1,
+                  PRIMARY KEY (`invoiceItemId`),
+                  KEY `fk_invoice_id` (`invoiceId`),
+                  KEY `fk_inventory_id` (`inventoryId`),
+                  CONSTRAINT `fk_inventory_id` FOREIGN KEY (`inventoryId`) REFERENCES `inventory` (`inventoryId`),
+                  CONSTRAINT `fk_invoice_id` FOREIGN KEY (`invoiceId`) REFERENCES `invoice` (`invoiceId`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'toys_encore'
+    -->
+    <database name="toys_encore">
+        <!-- Table invoiceitem -->
+        <table name="invoiceitem">
+            <column name="invoiceItemId">7</column>
+            <column name="invoiceId">1</column>
+            <column name="inventoryId">4</column>
+            <column name="price">8000</column>
+            <column name="qty">1</column>
+            <column name="discount">500</column>
+            <column name="type"></column>
+            <column name="status">1</column>
+        </table>
+        <table name="invoiceitem">
+            <column name="invoiceItemId">8</column>
+            <column name="invoiceId">2</column>
+            <column name="inventoryId">3</column>
+            <column name="price">5000</column>
+            <column name="qty">1</column>
+            <column name="discount">0</column>
+            <column name="type"></column>
+            <column name="status">1</column>
+        </table>
+        <table name="invoiceitem">
+            <column name="invoiceItemId">9</column>
+            <column name="invoiceId">2</column>
+            <column name="inventoryId">1</column>
+            <column name="price">2500</column>
+            <column name="qty">1</column>
+            <column name="discount">0</column>
+            <column name="type"></column>
+            <column name="status">1</column>
+        </table>
+        <table name="invoiceitem">
+            <column name="invoiceItemId">10</column>
+            <column name="invoiceId">2</column>
+            <column name="inventoryId">2</column>
+            <column name="price">1500</column>
+            <column name="qty">1</column>
+            <column name="discount">0</column>
+            <column name="type"></column>
+            <column name="status">1</column>
+        </table>
+    </database>
+</pma_xml_export>
